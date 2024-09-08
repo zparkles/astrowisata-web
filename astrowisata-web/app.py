@@ -26,7 +26,7 @@ import numpy as np
 
 app = Flask(__name__)
 #mysql = MySQL()
-app.secret_key= "super secret"
+app.secret_key= " "
 UPLOAD_FOLDER = 'static/upload'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 VERIFICATION_FOLDER = 'static/verification'
@@ -37,12 +37,7 @@ IMAGES_FOLDER = 'static/images'
 app.config['IMAGES_FOLDER'] = IMAGES_FOLDER
 PROOF_FOLDER = 'static/proofs'
 app.config['PROOF_FOLDER'] = PROOF_FOLDER
-'''
-app.config['MYSQLDATABASEHOST'] = 'localhost'
-app.config['MYSQLDATABASEUSER'] = 'woodfore@localhost'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_DB'] = 'woodfore_astrowisata'
-'''
+
 
 #mysql.init_app(app)
 #conn = mysql.connect()
@@ -51,10 +46,10 @@ app.config['MYSQL_DATABASE_DB'] = 'woodfore_astrowisata'
 
 #try:
 mydb =  mysql.connector.connect(
-    host="localhost",
-    user="woodfore_admin",
-    password="jmd28qhCyffAkUN",
-    database="woodfore_astrowisata")
+    host="db host",
+    user="db username",
+    password="db password",
+    database="db")
 
 
     #message = 'Successfully Connected'
@@ -756,7 +751,7 @@ def not_ver(id):
     return redirect("/adminpage/transactions")    
     
 @app.route('/adminpage/contributor_verification')
-#@login_required
+
 def contributor_list():
     mycursor.execute("SELECT * FROM contributors")
     contributors = mycursor.fetchall()   
