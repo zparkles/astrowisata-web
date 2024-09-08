@@ -1,0 +1,178 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>
+<div class="container">
+
+<form method="POST">
+
+
+  <div class="row">
+    <div class="col-12">
+      <div class="image_wrapper" >
+     {% if todaysdate >= post[12] %}
+     <div class="card-img-sepia" >
+      <img src= "../{{post[9]}}"  style="width: 100%; height: 300px; object-fit: cover; border-radius: 0.3rem">
+      </div>
+      {% else %}
+       <img src= "../{{post[9]}}"  style="width: 100%; height: 300px; object-fit: cover; border-radius: 0.3rem">
+      {% endif %}
+      <div class="overlay-5 overlay-6">
+      <div class="position-absolute bottom-0 start-1">
+        <p class="display-10 uppercase mb-0">{{post[1]}}</p>
+      by {{post[4]}} 
+        {% if post[12] == None %}
+        <p> Mulai dari {{post[10]}},- | {{post[6]}} | {{post[5].strftime("%d %B %Y")}} </p>
+        {% elif post[5].strftime("%Y") != post[12].strftime("%Y")  %}
+         <p> Mulai dari {{post[10]}},- | {{post[6]}} | {{post[5].strftime("%d %B %Y")}} - {{post[12].strftime("%d %B %Y")}} </p>
+         {% elif post[5].strftime("%B") != post[12].strftime("%B")  %}
+          <p> Mulai dari {{post[10]}},- | {{post[6]}} | {{post[5].strftime("%d %B")}} - {{post[12].strftime("%d %B %Y")}} </p>
+        {% else %}
+        <p> Mulai dari {{post[10]}},- | {{post[6]}} | {{post[5].strftime("%d")}} - {{post[12].strftime("%d %B %Y")}} </p>
+        {% endif %}
+        </div>
+         <div class="position-absolute bottom-20 end-5">
+         {% if session["username_k"] %}
+             {% if post[12] != None %}
+                 {% if todaysdate >= post[12] %}
+                 <button class="btn btn-secondary btn-lg disabled btn-secondary-thin mb-3" role="button" aria-pressed="true">Pesan sekarang</button>
+                 {% else %}
+                <a href="#order" class="btn btn-secondary btn-lg active btn-secondary-thin mb-3" role="button" aria-pressed="true">Pesan sekarang</a>
+                {% endif %}
+            {% endif %}
+          {% elif session["username"]== post[4] %}
+                <a href="{{url_for('edit_post', id=post[0])}}"><i class="fa-solid fa-pencil" style="color: #ffffff; font-size:25px"></i></a>
+               <a href="url_for('delete_post', id = post[0])"><i class="fa-solid fa-trash" style="color: #ffffff; font-size:25px"></i></a>
+          
+          {% endif %} 
+            
+        </div>
+       </div>
+       </div>
+        </div>
+
+    
+  </div>
+
+<!--- Details -->
+
+<br><br><br>
+<div class="container">
+<div class="row">
+    <div class="col-5 ms-6">
+      <div class="card" style="width: 100%; height:95%">
+      <div class="card-body">
+        <h5 class="card-title card-title-bold card-color-pink">Deskripsi Produk</h5>
+        <p class="card-text card-text-small" style = "white-space: pre-line; text-align: justify"> {{post[2]}}
+        </p>
+      </div>
+      </div>
+    </div>
+    <div class="col">
+            <div class= "row">
+                <div class="col col-exp">
+                  <div class="card" style="width: 13rem; height:95%">
+                  <div class="card-body">
+                    <h5 class="card-title card-title-bold card-color-pink">Lokasi</h5>
+                    <p class="card-text card-text-small">{{post[6]}}</p>
+                  </div>
+                  </div>
+                </div>
+                <div class="col col-exp">
+                    <div class="card" style="width: 13rem; height:95%">
+                    <div class="card-body">
+                      <h5 class="card-title card-title-bold card-color-pink">Fasilitas</h5>
+                      <p class="card-text card-text-small">Belum ada informasi</p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col col-exp">
+                    <div class="card" style="width: 13rem; height:95%" >
+                    <div class="card-body">
+                      <h5 class="card-title card-title-bold card-color-pink">Kontak</h5>
+                      <div class="row">
+                          <div class="col">
+                              <i class="fa-brands fa-whatsapp" style="color: #ffffff; font-size:40px"></i>
+                              <br><br>
+                              <i class="fa-regular fa-envelope" style="color: #ffffff;font-size:40px"></i>
+                            </div>
+                            <div class="col-8 col-8-margin ">
+                              <p class="line-brk" style="font-weight:600; font-size:0.8rem">Whatsapp</p>
+                              <p style="font-size:0.65rem"> wa.me/+62{{nomor}} </p>
+                              <p class=" mt-1 mb-0" style="font-weight:600; font-size:0.8rem">Email</p>
+                              <p style="font-size:0.65rem;"> {{email}}</p>
+                            
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col col-exp">
+                    <div class="card" style="width: 13rem; height:95%">
+                    <div class="card-body">
+                      <h5 class="card-title card-title-bold card-color-pink">Astronomis</h5>
+                      <p class="card-text card-text-small mb-0" style="font-weight:500;">Skala Bortle: - </p>
+                      <p class="card-text card-text-small mb-0" style="font-weight:500;">Fase Bulan: - </p>
+                      <p class="card-text card-text-small mb-0" style="font-weight:500;">Durasi malam: - </p>
+                      <p class="card-text card-text-small" style="font-weight:500;">Kemungkinan Hujan: - </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+  </div>
+
+</div>
+
+<!--- Checkout -->
+
+<br><br><br>
+<div id="order">     
+<div class="container">
+{% if session['username_k'] %}
+ {{ form.hidden_tag()}}
+ {% if todaysdate >= post[12] %}
+  <div class="col text-center">
+  {% if post[12] != None %}
+         <button class="btn btn-secondary btn-lg disabled btn-secondary-full"> Paket sudah tidak tersedia </button>
+      {% else %}
+
+  {% endif %}
+  </div>
+ 
+ 
+ {% else %}
+<div class="row ms-6 me-6">
+    <div class="col">
+       {{ form.start_date.label(class="form-label form-label-color")}}
+       {{ form.start_date(class="form-control")}}
+    </div>
+    <div class="col">
+      {{ form.end_date.label(class="form-label form-label-color")}}
+      {{ form.end_date(class="form-control")}}
+    </div>
+    <div class="col">
+         {{ form.quantity.label(class="form-label form-label-color")}} 
+       {{ form.quantity(class="form-control  form-control-tiny")}}
+    </div>
+  </div>
+    <div class="col text-center">
+      {{ form.submit(class="btn btn-secondary btn-lg active btn-secondary-full")}}
+    </div>
+   {% endif %}   
+{% endif %}
+     </div>
+     
+     
+     <br>
+     <br>
+</div>
+
+
+</form>
+</div>
+{% endblock %}

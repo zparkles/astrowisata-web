@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <form method="POST" action="{{url_for('login')}}">
+    <br>
+
+
+    <br>
+
+     <div class="row">
+        <div class="col-7">
+        <div class="position-absolute start-10">
+        <h2 class="form-label-color">Masuk</h2>
+        <h7> Silakan masuk untuk menggunakan akun Anda </h7>
+        <br/>
+        <br/>
+        <div class="col-12" style="line-height: 8px">
+            {{ form.hidden_tag()}}
+                     {{ form.username(class="form-control", placeholder="Username")}}
+                     <br>
+                     {{ form.password(class="form-control", placeholder="Kata Sandi")}}
+                     <br/>
+                     <br/>
+                     <br>
+                     {{ form.submit(class="btn btn-sm btn-secondary active", style= "width: 350px;")}}   
+            </div> 
+        </div>
+        </div>
+        <div class="col-5">
+         <img src= "../static/masuk.png"  style="width: 100%; height: 500px; object-fit: cover; border-radius: 0.3rem">
+        </div>
+      </div>
+    </form>
+</div>
+{% endblock %}

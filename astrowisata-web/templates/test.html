@@ -1,0 +1,90 @@
+<html lang = "en">
+<head>
+  <meta charset="utf-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Astrowisata</title>
+  <meta name="description" content="Astrowisata">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/static/css/custom.css" >
+  <meta name="description" content="Astrowisata">
+
+</head>
+<body>
+<div class= "container">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nama </th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+       <th scope="col">Date Added</th>
+    </tr>
+  </thead>
+  {% for c in users %}
+  <tbody>
+    <tr>
+      <th scope="row">{{c[0]}}</th>
+      <td>{{c[1]}}</td>
+      <td>{{c[2]}}</td>
+      <td>{{c[3]}}</td>
+      <td>{{c[4]}}</td>
+    </tr>
+
+  </tbody>
+    {% endfor %}
+</table>
+
+
+  {% if name %}
+      <h1> Hello {{name}}!! </h1>
+      <br>
+
+
+  {% else %}
+
+    
+    <h2>Sign up</h2>
+          <br>
+          <form action = "{{url_for('index')}}" method="POST">
+              {{ form.hidden_tag()}}
+               <br/>
+               {{ form.email.label(class_="form-label")}}
+               {{ form.email(class="form-control")}}
+              <br>
+              {{ form.name.label(class_="form-label")}}
+              {{ form.name(class="form-control")}}
+              <br/>
+              {{ form.username.label(class_="form-label")}}
+              {{ form.username(class="form-control")}}
+              <br/>
+              {{ form.nomor.label(class_="form-label")}}
+              {{ form.nomor(class="form-control")}}
+              <br/>
+
+              {{ form.deskripsi.label(class_="form-label")}}
+              {{ form.deskripsi(class="form-control")}}
+              <br/>
+              {{ form.password_hash.label(class="form-label")}}
+              {{ form.password_hash(class="form-control")}}
+              <br/>
+              {{ form.password_hash2.label(class_="form-label")}}
+              {{ form.password_hash2(class="form-control")}}
+              <br>
+
+              {{ form.submit(class="btn btn-secondary")}}
+         </form>
+
+    
+    {% endif %}
+    
+</div>
+
+
+
+
+
+
+</body>
+</html>

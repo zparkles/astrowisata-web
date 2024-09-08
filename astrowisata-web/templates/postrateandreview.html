@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#394AA5; font-size:20px"></i></button>    
+</div>
+
+<div class="container container-table mt-0">
+
+<br>
+
+
+<h1>{{ post[1] }}</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Nilai</th>
+      <th scope="col">Komentar</th>
+      
+    </tr>
+  </thead>
+  {% for t in transaction %}
+ 
+  
+  <tbody>
+    <tr>
+      <th scope="row">{{t[0]}}</th>  
+      <td>{{t[13]}}</td>
+      <td>{{t[11]}}</td>  
+      <td style="text-align: justify">{{t[12]}}</td>
+    </tr>
+
+  </tbody>
+
+  
+{% endfor %}
+
+</table>
+
+
+  
+</div>
+
+{% endblock %}

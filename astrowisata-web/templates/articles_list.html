@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="container">
+
+<br>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Judul </th>
+       <th scope="col">Author </th>
+       <th scope="col">Date Added</th>
+       <th scope="col">Status</th>
+       <th scope="col">Bukti</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  {% if session['username'] == "adminbebek" %}
+  {% for c in posts %}
+  <tbody>
+    <tr>
+      <th scope="row">{{c[0]}}</th>    
+      <td>{{c[1]}}</td>
+      <td>{{c[4]}}</td>
+      <td>{{c[5]}}</td>
+      {% if c[8] == "Sudah diverifikasi" %}
+      <td class="td-blue">{{c[8]}}</td>
+      {% elif c[8] == "Menunggu persetujuan" %}
+      <td class="td-red">{{c[8]}}</td>
+ 
+      {% endif %}
+       <td><img src="../{{ c[7] }}" style="width: 50%;"><br></td>
+      <td>
+       {% if c[8] == "Menunggu persetujuan" %}
+      <a class="btn btn-secondary active btn-sm" href="{{url_for('artikel_ver', id=c[0])}}" role="button">Terima</a>
+      {% else %}
+      <button type="button" class="btn btn-secondary btn-sm" disabled>Sudah disetujui</button>
+      {% endif %}   
+          
+          
+      </td>
+      <td><a href="{{url_for('delete_article', id=c[0])}}"><i class="fa-solid fa-trash" style="color: #ffffff; font-size:15px"></i></a>
+      </td>
+    </tr>
+
+  </tbody>
+    {% endfor %}
+      {% endif %}
+
+
+</table>
+
+
+
+
+  
+</div>
+
+{% endblock %}

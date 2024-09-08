@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="container">
+
+<br>
+  {% for message in get_flashed_messages() %}
+      <div class = "alert alert-warning alert dismissable fade show" role="alert">
+          {{ message }}
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+  {% endfor %}
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nama </th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+       <th scope="col">Date Added</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  {% if session['username'] == "adminbebek" %}
+  {% for c in users %}
+  <tbody>
+    <tr>
+      <th scope="row">{{c[0]}}</th>           
+      <td>{{c[2]}}</td>
+      <td>{{c[3]}}</td>
+      <td>{{c[4]}}</td>
+      <td>{{c[10]}}</td>
+      <td>
+       <a href="#"><i class="fa-solid fa-trash" style="color: #fff;"></i></a>
+
+      </td>
+    </tr>
+
+  </tbody>
+    {% endfor %}
+      {% endif %}
+
+
+</table>
+
+
+
+
+  
+</div>
+
+{% endblock %}

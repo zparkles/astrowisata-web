@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>
+
+
+{% include "includes/second nav.html" %}
+{% include "includes/third nav.html" %}
+
+<div class="container">
+
+<br>
+
+<div class="row">
+{% for post in posts %}
+<div class="col-lg-22">
+  <div class="card mb-3">
+   {% if todaysdate >= post[12] %}
+   <img class="card-img-top card-img-sepia" src="{{ post[9] }}" alt="Card image cap">
+   {% else %}
+    <img class="card-img-top" src="{{ post[9] }}" alt="Card image cap">
+    {% endif %}
+    <div class="card-body main-card">
+      <h5 class="card-title">{{post[1]}}</h5>
+      <br>
+      <div class="position-absolute bottom-0 end-0">
+        {% if todaysdate >= post[12] %}
+       <button id = "Enter" type = "button"
+     onclick = "window.location.href ='{{url_for('post', id = post[0])}}';"
+       class= "btn btn-circle card-img-sepia"><img src="../static/Expandbutton.png" style="width:70%"></button>    
+       {% else %}
+       <button id = "Enter" type = "button"
+     onclick = "window.location.href ='{{url_for('post', id = post[0])}}';"
+       class= "btn btn-circle"><img src="../static/Expandbutton.png" style="width:70%"></button>
+       {% endif %}
+        </div>
+       
+       
+        <div class="position-absolute top-1 start-1">
+        {% if post[10] == None %}
+        
+        {% elif 0 <= post[10] <= 999999 %}
+        <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded">$</button>
+        {% elif 1000000 <= post[10] <= 50000000 %}
+        <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded">$$</button>
+        {% else %}
+         <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded">$$$</button>
+        {% endif %}
+        </div>
+        <div class="position-absolute top-1 start-20">
+        {% if post[11] == 0.0 %}
+        <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded"><i class="fa-solid fa-star"></i> -/5</button>
+        {% else %}
+        <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded"><i class="fa-solid fa-star"></i> {{post[11]}}/5</button>
+        {% endif %}
+        </div>
+    </div>
+    </div>
+    </div>
+  {% endfor %}  
+  </div>
+
+
+
+</div>
+{% endblock %}

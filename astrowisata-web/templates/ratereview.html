@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<br>
+<br>
+<br><br>
+<div class="container">
+
+
+
+
+<div class="row">
+{% for post in posts %}
+  {% if session['username'] == post[4] %}
+<div class="col-lg-22">
+  <div class="card mb-3">
+    <img class="card-img-top" src="../{{ post[9] }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{post[1]}}</h5>
+       <a href="{{url_for('ratereview', id = post[0])}}" class="card-link card-link-color">Lihat rating dan review</a>  
+    </div>
+    </div>
+    </div>
+    {% endif %}
+  {% endfor %}  
+  </div>
+
+  
+</div>
+
+{% endblock %}

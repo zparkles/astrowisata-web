@@ -1,0 +1,41 @@
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+      <h5 class="display-8 ms-3"> <span3>Filter</span3> </h5>
+       <form method="POST" action="{{url_for('searchfilters')}}" class="d-flex">
+                {{ form.hidden_tag() }}
+                    <select class="form-control form-control-filter me-1" id="filtertype" name="filtertype">
+                    <option value="None">Tipe kegiatan</option>
+                      <option value="Stargazing">Stargazing</option>
+                      <option value="Gerhana Bulan">Gerhana Bulan</option>
+                      <option value="Gerhana Matahari">Gerhana Matahari</option>
+                      <option value="Komet">Komet</option>
+                      <option value="Hujan Meteor">Hujan Meteor</option>
+                      <option value="Pengamatan Planet">Pengamatan Planet</option>
+                      <option value="Starbath">Starbath</option>
+                      <option value="Planetarium">Planetarium</option>
+                      <option value="Tempat Bersejarah">Tempat Bersejarah</option>
+                    </select>
+             
+                                 <select class="form-control form-control-filter me-1" id="pricerange" name="pricerange">
+                                 <option value="None">Harga</option>
+                                 <option value="0"> < Rp100.000 </option>
+                                   <option value="1"> Rp100.000 - 499.999</option>
+                                   <option value="2">Rp500.000 - 999.999</option>
+                                   <option value="3">Rp1.000.000 - 1.999.999</option>
+                                   <option value="4">Rp2.000.000 - 2.999.999</option>
+                                   <option value="5">Rp3.000.000 - 3.999.999</option>
+                                   <option value="6">Rp4.000.000 - 5.000.000</option>
+                                   <option value="7"> > Rp5.000.000 </option>
+                                 </select>
+                            <button class="btn btn-outline-light active me-1" input type="reset">Reset</button>   
+                            <button class="btn btn-secondary active" type="submit">Enter</button>
+                         </form>
+            
+         
+    </div>
+</nav>
+
+

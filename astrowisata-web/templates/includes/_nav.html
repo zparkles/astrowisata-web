@@ -1,0 +1,261 @@
+
+<nav class="navbar navbar-expand-lg navbar-custom navbar-transparent">
+  <div class="container-fluid">
+    <h1 class="title" href="{{url_for('beranda')}}"><span>ASTRO</span>WISATA</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+     {% if session['username'] == "adminbebek" %}
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+             <li class="nav-item">
+               <a class="nav-link" href="{{url_for('beranda')}}">Beranda</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="{{url_for('admin')}}">Transaksi</a>
+             </li> 
+             <li class="nav-item">
+               <a class="nav-link" href="{{url_for('articles_list')}}"> Artikel</a>
+             </li> 
+             <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Users</a>
+               
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="{{url_for('contributor_list')}}">Kontributor</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('user_list')}}">Biro Wisata</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('consumer_list')}}">Konsumen</a></li>
+                </ul>
+             </li>    
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Kalender</a>
+                
+                 <ul class="dropdown-menu dropdown-menu-end">
+                   <li><a class="dropdown-item" href="{{url_for('cal_admin')}}">Tambah Fenomena</a></li>
+                   <li><a class="dropdown-item" href="{{url_for('cal_list')}}">Edit Fenomena</a></li>
+                   <li><a class="dropdown-item" href="{{url_for('cal')}}">Lihat Kalender</a></li>
+                 </ul>
+              </li>                         
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Akun
+           </a>
+           <ul class="dropdown-menu dropdown-menu-end">
+             <li><a class="dropdown-item" href="{{url_for('profil')}}">Profil</a></li>
+             <li><hr class="dropdown-divider"></li>
+             <li><a class="dropdown-item" href="{{url_for('logout')}}">Keluar</a></li>
+           </ul>
+         </li> 
+         </ul>
+         </div>  
+     {% elif session['username'] %}
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('post_saya')}}">Astrowisata</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('triplogs')}}">Daftar Perjalanan</a>
+                </li>   
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('rr')}}">Penilaian</a>
+                </li>                           
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Akun
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{{url_for('profil')}}">Profil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{url_for('logout')}}">Keluar</a></li>
+              </ul>
+            </li> 
+            </ul>
+            </div>  
+    {% elif session['username_k'] %}                      
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('beranda')}}">Beranda</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('astrowisata')}}">Astrowisata</a>
+                 </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Ilmu
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="{{url_for('simulasi')}}">Simulasi Astronomi</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('artikel')}}">Informasi Astronomi</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('cal')}}">Kalender</a></li>
+                  </ul>
+                </li>   
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Akun
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{{url_for('profil')}}">Profil</a></li>
+                 <li><a class="dropdown-item" href="{{url_for('my_cart')}}">My Cart <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i></a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{url_for('logout')}}">Keluar</a></li>
+              </ul>
+            </li>  
+    {% elif session['username_c'] %}                      
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('artikel_saya')}}">Artikel Saya</a>
+                </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Akun
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{{url_for('profil')}}">Profil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{url_for('logout')}}">Keluar</a></li>
+              </ul>
+            </li>  
+
+    {% else %}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('beranda')}}">Beranda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('astrowisata')}}">Astrowisata</a>
+          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ilmu
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end ">
+            <li><a class="dropdown-item" href="{{url_for('simulasi')}}">Simulasi Astronomi</a></li>
+            <li><a class="dropdown-item" href="{{url_for('artikel')}}">Informasi Astronomi</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" href="#Daftar">Kalender</a></li>
+          </ul>
+        </li>  
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Masuk/Daftar
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" data-bs-toggle="modal" href="#MasukKonsumen">Konsumen</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" href="#MasukWisata">Biro Wisata</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" href="#MasukKontributor">Kontributor</a></li>
+          </ul>
+        </li> 
+        {% endif %}
+        
+      </ul>
+    </div>
+    </ul>
+  </div>
+  
+  
+  
+
+
+<!-- Modal -->
+<div class="modal fade" id="MasukKonsumen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style= "background-color: #121212">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel"> Selamat Datang!</h2>
+        <button class="close btn" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa-regular fa-circle-xmark"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="justify-content-center">
+        
+
+             <button id = "Enter" type = "button"
+             onclick = "window.location.href ='{{url_for('loginkonsumen')}}';" 
+             class  = "btn btn-secondary active">Masuk</button>
+                 <button id = "Enter" type = "button"
+                 onclick = "window.location.href ='{{url_for('signupkonsumen')}}';" 
+                 class  = "btn btn-secondary active">Buat akun</button>
+     
+           
+           
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="MasukWisata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style= "background-color: #121212">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel"> Selamat Datang!</h2>
+        <button class="close btn" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa-regular fa-circle-xmark"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="justify-content-center">
+        
+
+             <button id = "Enter" type = "button"
+             onclick = "window.location.href ='{{url_for('login')}}';" 
+             class  = "btn btn-secondary active">Masuk</button>
+                 <button id = "Enter" type = "button"
+                 onclick = "window.location.href ='{{url_for('index')}}';" 
+                 class  = "btn btn-secondary active">Buat akun</button>
+     
+           
+           
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="MasukKontributor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style= "background-color: #121212">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel"> Selamat Datang!</h2>
+        <button class="close btn" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa-regular fa-circle-xmark"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="justify-content-center">
+        
+
+             <button id = "Enter" type = "button"
+             onclick = "window.location.href ='{{url_for('loginkontributor')}}';" 
+             class  = "btn btn-secondary active">Masuk</button>
+                 <button id = "Enter" type = "button"
+                 onclick = "window.location.href ='{{url_for('signupkontributor')}}';" 
+                 class  = "btn btn-secondary active">Buat akun</button>
+     
+           
+           
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Daftar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style= "background-color: transparent" >
+      <img src = "../static/PP Daftar.png" style = "height:298.5px; width: 517px;" onclick = "window.location.href ='{{url_for('signupkonsumen')}}';">
+    </div>
+  </div>
+</div>
+
+
+</nav>
+
+

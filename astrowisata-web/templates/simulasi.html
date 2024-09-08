@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>
+
+<div class="container">
+
+<br>
+
+<div class="card-group">
+  <div class="card mb-3 me-2">
+    <img class="card-img-top"  src="../static/lunarsimulator img.png" style="width:100%; height: 300px; color: #121212">
+    <div class="card-body">
+      <a class="card-title card-title-lg card-color-pink" href= "{{url_for('fasebulan')}}">Simulasi Fase Bulan</a>
+
+        <p class="card-text text-center"><small>Konten diambil dari astro.unl.edu </small></p>
+    </div>
+    </div>
+    <div class="card mb-3 me-2">
+      <img class="card-img-top" src="../static/eclipsing-binary.png" alt="Card image cap" style="width:100%; height: 300px; color: #121212">
+    <div class="card-body">
+      <a class="card-title card-title-lg card-color-pink" href= "{{url_for('bintangganda')}}" >Simulasi Bintang Ganda</a>
+
+        <p class="card-text text-center"><small>Konten diambil dari astro.unl.edu </small></p>
+    </div>
+      </div>
+      
+       <div class="card mb-3 me-2">
+         <img class="card-img-top" src="../static/sun-moon-earth.png" alt="Card image cap" style="width:100%; height: 300px; color: #121212">
+             <div class="card-body">
+               <a class="card-title card-title-lg card-color-pink" href= "{{url_for('sunmoonearth')}}" >Matahari, Bulan, Bintang</a>
+
+                 <p class="card-text text-center"><small>Konten diambil dari astro.unl.edu </small></p>
+             </div>
+         </div>
+    
+    </div>
+
+
+
+
+</div>
+{% endblock %}

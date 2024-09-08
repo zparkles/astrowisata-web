@@ -1,0 +1,29 @@
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+      <h5 class="display-8 ms-3"> <span3>Filter</span3> </h5>
+       <form method="POST" action="{{url_for('articlesfilters')}}" class="d-flex">
+                {{ form.hidden_tag() }}
+                    <select class="form-control form-control-filter me-1" id="filtertype" name="filtertype">
+                    <option value="None">Kategori</option>
+                      <option value="Tata Surya">Tata Surya</option>
+                      <option value="Gerhana">Gerhana </option>
+                      <option value="Kosmologi">Kosmologi</option>
+                      <option value="Bintang">Bintang</option>
+                      <option value="Galaksi">Galaksi</option>
+                      <option value="Astrowisata">Astrowisata</option>
+                      <option value="Alam Semesta">Alam Semesta</option>
+                      <option value="Menjawab Hoax">Menjawab Hoax</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
+                            <button class="btn btn-outline-light active me-1" input type="reset">Reset</button>   
+                            <button class="btn btn-secondary active" type="submit">Enter</button>
+                         </form>
+            
+         
+    </div>
+</nav>
+
+

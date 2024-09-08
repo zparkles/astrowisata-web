@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if session['username'] == "adminbebek" %}   
+
+<div class="container">
+  <!-- Content here -->
+ <br> 
+{% for message in get_flashed_messages() %}
+    <div class = "alert alert-warning alert-dismissable fade show" role="alert">
+        {{ message }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+{% endfor %}
+  
+
+    <form method="POST" >
+        <h2>Tambah fenomena baru</h2>
+
+              {{ form.hidden_tag()}}
+               <br/>
+               {{ form.title.label(class="form-label")}}
+               {{ form.title(class="form-control")}}    
+              <br>         
+              {{ form.content.label(class="form-label")}}
+              {{ form.content(class="form-control", rows = "5")}}
+              <br/>
+              {{ form.sumber.label(class="form-label")}}
+              {{ form.sumber(class="form-control")}}
+              <br/>
+              <br/>
+              {{ form.lokasi.label(class="form-label")}}
+              {{ form.lokasi(class="form-control")}}
+              <br/>
+              {{ form.start_date.label(class="form-label")}}
+              {{ form.start_date(class="form-control")}}   
+             <br/>
+             {{ form.end_date.label(class="form-label")}}
+             {{ form.end_date(class="form-control")}}   
+            <br/>
+             {{ form.type_of_event.label(class="form-label")}}
+             {{ form.type_of_event(class="form-control")}}   
+            <br>
+              {{ form.submit(class="btn btn-secondary active")}}
+ 
+         </form>  
+
+{% endif %}
+</div>
+
+{% endblock %}

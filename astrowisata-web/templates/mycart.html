@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>
+<br>
+
+<div class="container container-table mt-0">
+
+
+{% if session ['username_k'] %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nama Kegiatan</th>
+      <th scope="col">Tanggal Keberangkatan</th>
+      <th scope="col">Tanggal Kepulangan</th>
+      <th scope="col">Jumlah</th>
+      <th scope="col">Harga</th>
+      <th scope="col">Total</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+
+      
+    </tr>
+  </thead>
+  {% for t in transactions %}
+      {% if session['id'] == t[1] %}
+  <tbody>
+    <tr>
+      <th scope="row">{{t[0]}}</th>   
+      <td style="font-weight: 500">{{t[4]}}</td>  
+      <td>{{t[9].strftime("%d %B %Y")}}</td>
+      <td>{{t[10].strftime("%d %B %Y")}}</td>      
+      <td>{{t[3]}}</td>
+      <td>{{t[5]}}</td>
+      <td>{{t[6]}}</td>
+      {% if t[8] == "Selesai" %}
+      <td class="td-blue">{{t[8]}}</td>
+      {% elif t[8] == "Belum dibayar" %}
+      <td class="td-red">{{t[8]}}</td>
+      {% elif t[8] == "Bukti pembayaran tidak sesuai. Coba lagi" %}
+      <td class="td-red">{{t[8]}}</td>
+      {% else %}
+      <td class="td-pink">{{t[8]}}</td>
+      {% endif %}
+      
+      <td>
+
+      {% if t[8] == "Belum dibayar" %}
+      <a class="btn btn-secondary active btn-secondary-thin-sm" href="{{url_for('checkout', id=t[0])}}" role="button">Check out</a>
+      {% elif t[8] == "Bukti pembayaran tidak sesuai. Coba lagi" %}
+      <a class="btn btn-secondary active btn-secondary-thin-sm" href="{{url_for('checkout', id=t[0])}}" role="button">Unggah ulang</a>
+      {% elif todaysdate >= t[10] and t[8] == "Perjalanan selesai" %}
+      <a class="btn btn-secondary active btn-secondary-thin-sm" href="{{url_for('rate', id=t[0])}}" role="button">Nilai dan Komentari</a>
+      {% elif todaysdate >= t[10] and t[8] == "Selesai" %}
+      <button type="button" class="btn btn-secondary btn-secondary-thin-sm disabled">Terima Kasih!</button>
+      {% elif t[10] > todaysdate >= t[9] and t[8] == "Sudah bayar" %}
+      <button type="button" class="btn btn-secondary btn-secondary-thin-sm disabled">Dalam perjalanan</button>
+      {% elif t[10] > todaysdate and t[8] == "Belum dibayar" %}
+      <button type="button" class="btn btn-secondary btn-secondary-thin-sm disabled"> Expired</button>
+      {% else %}
+      <button type="button" class="btn btn-secondary btn-secondary-thin-sm disabled">Sudah dipesan</button>
+      {% endif %}
+
+      </td>
+      
+      <td> 
+      {% if t[8] == "Belum dibayar" %}
+      <a href="{{url_for('edit_transaction', id=t[0])}}"><i class="fa-solid fa-pencil" style="color: #ffffff; font-size:15px"></i></a>
+       <a href="{{url_for('delete_transaction', id=t[0])}}"><i class="fa-solid fa-trash" style="color: #ffffff; font-size:15px"></i></a>
+       {% else %}
+       {% endif %}
+       </td>
+
+     
+    </tr>
+
+  </tbody>
+      {% endif %}
+
+  {% endfor %}
+
+</table>
+
+{% else %}
+<h2> Anda tidak memiliki akses! </h2>
+
+{% endif %}
+
+
+  
+</div>
+
+{% endblock %}

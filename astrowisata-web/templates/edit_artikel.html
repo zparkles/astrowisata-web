@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+     <form method="POST" enctype="multipart/form-data">
+     {{ form.hidden_tag()}}
+      <br/>
+      {{ form.title.label(class="form-label")}}
+      {{ form.title(class="form-control")}}    
+     <br>         
+     {{ form.content.label(class="form-label")}}
+     {{ form.content(class="form-control", rows = "11")}}
+     <br/>
+                {{ form.link.label(class="form-label")}}
+                {{ form.link(class="form-control")}}
+            
+            <br/>
+                {{ form.article_type.label(class="form-label")}}
+                {{ form.article_type(class="form-control")}}
+      <br/>
+      
+        {{ form.image_1.label(class="form-label")}}
+        {{ form.image_1(class="form-control")}}  
+      <br/>
+
+     {{ form.submit(class="btn btn-secondary active")}}
+    </form>  
+
+    
+
+
+</div>
+
+{% endblock %}

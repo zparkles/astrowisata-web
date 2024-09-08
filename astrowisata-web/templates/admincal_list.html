@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="container">
+
+<br>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nama Fenomena</th>
+      <th scope="col">Deskripsi</th>
+      <th scope="col">Lokasi</th>
+      <th scope="col">Sumber</th>
+       <th scope="col">Tipe</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  {% if session['username'] == "adminbebek" %}
+  {% for t in events %}
+  <tbody>
+    <tr>
+      <th scope="row">{{t[0]}}</th>           
+      <td>{{t[1]}}</td>
+      <td>{{t[2]}}</td>
+      <td>{{t[7]}}</td>
+       <td>{{t[6]}}</td>
+      <td>{{t[3]}}</td>
+      <td> 
+      <a href="{{url_for('cal_admin_edit', id = t[0])}}"><i class="fa-solid fa-pencil" style="color: #ffffff; font-size:15px"></i></a>
+       <a href="{{url_for('cal_delete', id = t[0])}}"><i class="fa-solid fa-trash" style="color: #fff;"></i></a></td>
+
+      
+    </tr>
+
+  </tbody>
+    {% endfor %}
+      {% endif %}
+
+
+</table>
+
+
+
+
+  
+</div>
+
+{% endblock %}

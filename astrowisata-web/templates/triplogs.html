@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>
+
+<div class="container container-table mt-0">
+
+<br>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nama Kegiatan</th>
+      <th scope="col">Username konsumen</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+      
+    </tr>
+  </thead>
+  {% for t in transactions %}
+  
+
+  
+  <tbody>
+    <tr>
+      <th scope="row">{{t[0]}}</th>   
+      <td>{{t[4]}}</td>  
+      <td>{{t[13]}}</td>
+      {% if t[8] == "Selesai" %}
+      <td class="td-blue">{{t[8]}}</td>
+      {% else %}
+      <td class="td-pink">{{t[8]}}</td>
+      {% endif %}
+      <td>
+      {% if todaysdate >= t[10] and t[8] == "Sudah bayar"%}
+      <a class="btn btn-secondary active btn-secondary-thin-sm" href="{{url_for('endtrip', id=t[0])}}" role="button">Selesaikan Perjalanan</a>
+      {% elif todaysdate >= t[10] and t[8] == "Perjalanan selesai" %}
+      <button type="button" class="btn btn-secondary btn-secondary-thin-sm disabled">Perjalanan Selesai</button>
+      {% elif todaysdate >= t[10] and t[8] == "Selesai" %}
+      <button type="button" class="btn btn-secondary btn-secondary-thin-sm disabled">Perjalanan Selesai</button>
+      {% else %}
+      <button type="button" class="btn btn-secondary btn-secondary-thin-sm disabled">Dalam Perjalanan</button>
+      {% endif %}
+          
+          
+          
+      </td>
+    </tr>
+
+  </tbody>
+
+{% endfor %}
+
+</table>
+
+
+  
+</div>
+
+{% endblock %}

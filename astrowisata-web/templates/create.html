@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+  <!-- Content here -->
+ <br> 
+   
+    <form method="POST" enctype="multipart/form-data">
+        <h3 class="form-label-color">Buat paket wisata baru</h3>
+   
+          
+              {{ form.hidden_tag()}}
+               <br/>
+               {{ form.title.label(class="form-label")}}
+               {{ form.title(class="form-control")}}    
+              <br>         
+              {{ form.content.label(class="form-label")}}
+              {{ form.content(class="form-control", rows = "5")}}
+              <br/>
+              {{ form.location.label(class="form-label")}}
+              {{ form.location(class="form-control")}}
+              <br/>
+              {{ form.event_date.label(class="form-label")}}
+              {{ form.event_date(class="form-control")}}   
+             <br/>
+             {{ form.event_end.label(class="form-label")}}
+             {{ form.event_end(class="form-control")}}   
+            <br/>
+             {{ form.type_of_event.label(class="form-label")}}
+             {{ form.type_of_event(class="form-control")}}   
+              <br/>
+              {{ form.price.label(class="form-label")}}
+              {{ form.price(class="form-control")}}   
+                             
+
+               <br/>
+                {{ form.image_1.label(class="form-label")}}
+                <br>
+        <h7> Gambar akan berubah ukuran </h7>
+                {{ form.image_1(class="form-control")}}            
+                <br/>           
+            
+              {{ form.submit(class="btn btn-secondary active")}}
+
+        </form>
+</div>
+
+{% endblock %}

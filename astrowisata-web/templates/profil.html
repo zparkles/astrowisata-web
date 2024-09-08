@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="container">
+
+<br>
+
+{% if session['username'] %}
+{% for user in users %}
+{% if user[2] == session['username'] %}
+<p class="h3"> Hi, {{ user[1] }}!</p>
+<br>
+<p class="display-13"> <span>Username:</span> {{ user[2] }}</p>
+<p class="display-13"><span>Email: </span> {{ user[3] }}</p>
+<p class="display-13"><span>Deskripsi:</span> </p> <p class="display-13" style="text-align: justify">{{ user[6] }}</p><br>
+{% endif %}
+{% endfor %}
+
+
+{% elif session['username_c'] %}
+{% for user in contributors %}
+{% if user[2] == session['username_c'] %}
+<p class="h3"> Hi, {{ user[1] }}!</p>
+<br>
+<p class="display-13"><span>Username:</span> {{ user[2] }}</p>
+<p class="display-13"><span>Email: </span>{{ user[3] }}</p>
+<p class="display-13"><span>Nomor telepon: </span>0{{ user[8] }}</p>
+{% endif %}
+{% endfor %}
+
+{% elif session['username_k'] %}
+{% for user in consumers %}
+{% if user[3] == session['username_k'] %}
+<p class="h3" style= "color: #fff;"> Hi, {{user[1]}} {{ user[2] }}!</p>
+<br>
+<p class="display-13"><span>Username:</span> {{ user[3] }}</p>
+<p class="display-13"><span>Email: </span>{{ user[4] }}</p>
+<p class="display-13"><span>Tanggal lahir:</span> {{ user[5].strftime("%d %B %Y")}}</p>
+<p class="display-13"><span>Nomor telepon: </span>0{{ user[6] }}</p>
+<p class="display-13"><span>Kebangsaan:</span> {{ user[7] }}</p>
+<p class="display-13"><span>Nomor identitas: </span>{{ user[8] }}</p>
+{% endif %}
+{% endfor %}
+
+{% else %}
+<h2> You are not authorized! </h2>
+
+{% endif %}
+
+
+</div>
+ 
+
+
+{% endblock %}

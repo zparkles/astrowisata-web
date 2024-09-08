@@ -1,0 +1,66 @@
+
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>
+
+<div class="container">
+
+
+
+<div class="row">
+    <div class="col-3 container-title">
+        <div class="d-flex flex-md-column">
+        <div class="p-45"></div>
+        <div class = "p-3 me-2">
+       <p class="display-7 uppercase mb-0"><span>{{post[1]}}</span></p>
+       <p>  {{ name }} | {{post[5].strftime("%d %B %Y")}} </p>
+            {% if session['username_c'] == post[4] %}
+                {% if post[9] == '' %}
+                <a href="{{url_for('edit_articles', id=post[0])}}"><i class="fa-solid fa-pencil" style="color: #ffffff; font-size:20px"></i></a>
+                <a href="{{url_for('delete_articles', id=post[0])}}"><i class="fa-solid fa-trash" style="color: #fff; font-size:20px"></i></a>
+                {% else %}
+                <a href="{{post[9]}}"><i class="fa-solid fa-link" style="color: #ffffff; font-size:20px"></i></a>
+                <a href="{{url_for('edit_articles', id=post[0])}}"><i class="fa-solid fa-pencil" style="color: #ffffff; font-size:20px"></i></a>
+                <a href="{{url_for('delete_articles', id=post[0])}}"><i class="fa-solid fa-trash" style="color: #fff; font-size:20px"></i></a>
+                {% endif %}
+            {% elif session['username'] == "adminbebek" %}
+            <a href="{{url_for('delete_articles', id=post[0])}}"><i class="fa-solid fa-trash" style="color: #fff; font-size:20px"></i></a>
+            {% else %}
+                {% if post[9] == '' %}
+                {% else %}
+                <a href="{{post[9]}}"><i class="fa-solid fa-link" style="color: #ffffff; font-size:20px"></i></a>
+                {% endif %}
+            {% endif %}
+       <br>
+       {% if session['username_c'] == post[4] %}
+            {% if post[8] == "Sudah diverifikasi" %}
+            <p class= "display-14">{{post[8]}}</p>
+            {% elif post[8] == "Menunggu persetujuan" %}
+            <p class= "display-16">{{post[8]}}</p>
+            {% endif %}
+        {% endif %}
+        </div>
+        <div class="p-4"></div>
+        </div>
+    </div>
+    
+    <div class="col-9">
+     <img src= "../{{post[6]}}"  style="width: 100%; height: 550px; object-fit: cover; border-radius: 0.3rem">
+    </div>
+  </div>
+<br>
+    <div class="col-12 container-content">
+       <div style="white-space: pre-line">{{post[2]}}</div>
+
+    </div>
+      
+        <br>
+
+
+</div>
+{% endblock %}

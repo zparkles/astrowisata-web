@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="container">
+
+  {% for message in get_flashed_messages() %}
+      <div class = "alert alert-warning alert dismissable fade show" role="alert">
+          {{ message }}
+          </div>
+  {% endfor %}
+
+<br>
+{% if session ['username_k'] %}
+     <form method="POST">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nama Kegiatan</th>
+      <th scope="col">Tanggal Keberangkatan</th>
+      <th scope="col">Tanggal Kepulangan</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>           
+      <td>{{transaction[4]}}</td>
+     {{ form.hidden_tag()}} 
+       <td>{{form.start_date(class="form-control")}}</td>
+       <td>{{form.end_date(class="form-control")}}</td>     
+       <td>{{ form.quantity(class="form-control")}}</td>
+      <td>{{transaction[5]}}</td>
+      <td>{{transaction[6]}}</td>
+        <td>{{ form.editcart(class="btn btn-secondary active btn-secondary-thin-sm")}}</td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+{% else %}
+<h2> You are not authorized! </h2>
+
+{% endif %}
+
+
+
+  
+</div>
+
+{% endblock %}

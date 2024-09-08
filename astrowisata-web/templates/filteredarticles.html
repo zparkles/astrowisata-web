@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>
+
+
+
+<div class="container">
+  
+<br>
+    <h2> Ini hasil filter Anda </h2>
+
+
+<br>
+
+<div class="row">
+{% for post in posts %}
+    {% if post[8] == "Sudah diverifikasi" %}
+<div class="col-lg-22">
+  <div class="card mb-3">
+    <img class="card-img-top" src="../{{ post[6] }}" alt="Card image cap">
+    <div class="card-body article-card">
+      <h6 class="card-title-sm">{{post[1]}}</h6>
+      {% if post[10] == '' %}
+      <div class="position-absolute bottom-5 end-5">
+      <a href="{{url_for('articles', id = post[0])}}" class="card-link card-link-color">Baca artikel</a>  
+        </div>
+        {% else %}
+      <div class="position-absolute bottom-5">
+    <h7 class= "display-15 me-5"> {{post[10]}}</h7>      
+      <a href="{{url_for('articles', id = post[0])}}" class="card-link card-link-color">Baca artikel</a>  
+        </div>
+        {% endif %}
+    </div>
+    </div>
+    </div>
+    {% endif %}
+  {% endfor %}  
+  </div>
+  
+</div>
+{% endblock %}

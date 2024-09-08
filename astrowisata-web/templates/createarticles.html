@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+  <!-- Content here -->
+ <br> 
+ 
+    {% for message in  get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+    {% endfor %}
+  
+{% if session['username_c'] %}   
+  <form method="POST" enctype="multipart/form-data">
+        <h2>Buat artikel baru</h2>
+
+              {{ form.hidden_tag()}}
+               <br/>
+               {{ form.title.label(class="form-label")}}
+               {{ form.title(class="form-control")}}    
+              <br>         
+              {{ form.content.label(class="form-label")}}
+              {{ form.content(class="form-control", rows = "11")}}
+            
+
+               <br/>
+                {{ form.link.label(class="form-label")}}
+                {{ form.link(class="form-control")}}
+            
+            <br/>
+                {{ form.article_type.label(class="form-label")}}
+                {{ form.article_type(class="form-control")}}
+
+               <br/>
+                {{ form.image_1.label(class="form-label")}}
+                {{ form.image_1(class="form-control")}}            
+                <br/>     
+                
+                {{ form.verification.label(class="form-label")}}
+                {{ form.verification(class="form-control")}}            
+                <br/>   
+            
+              {{ form.submit(class="btn btn-secondary active")}}
+         </form>  
+
+        
+{% else %}
+<h2> Anda tidak memiliki izin! </h2>
+
+{% endif %}
+</div>
+
+{% endblock %}

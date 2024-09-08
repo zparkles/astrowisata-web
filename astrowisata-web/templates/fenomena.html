@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+{% if session['username_k'] %}
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>
+ <div class="container">
+
+ 
+
+ <br>
+
+             <p class= "display-7 text-center"> <span2>{{event[1]}} </span2></p>
+             {% if event[4].strftime("%d %B %Y") != event[5].strftime("%d %B %Y") %}
+             <p class= "display-11 text-center"> {{event[4].strftime("%d %B %Y")}} - {{event[5].strftime("%d %B %Y")}}</p>
+             {% else %}
+              <p class= "display-11 text-center"> {{event[4].strftime("%d %B %Y")}}</p>
+             {% endif %}
+             <p class= "display-11 text-center"><span>{{event[3]}}</span></p>
+    
+        
+             <div class = "row">
+                 
+             <div class = "col-md-3"></div>
+             <div class = "col-md-6">
+             <p class= "display-8" style= "text-align: justify"> {{event[2]}}</p>
+             <p style= "text-align: justify"> Sumber: {{event[6]}}</p>
+              <p class= "display-17 text-center"> <span2>Fenomena ini dapat diamati di</span2> <span> {{event[7]}}</span></p>  
+              </div>
+              <div class = "col-md-3"></div>
+            </div>
+            
+
+
+ </div>
+
+{% elif session['username'] == "adminbebek" %}
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>
+ <div class="container">
+
+ 
+
+ <br>
+
+             <p class= "display-7 text-center"> <span2>{{event[1]}} </span2></p>
+             {% if event[4].strftime("%d %B %Y") != event[5].strftime("%d %B %Y") %}
+             <p class= "display-11 text-center"> {{event[4].strftime("%d %B %Y")}} - {{event[5].strftime("%d %B %Y")}}</p>
+             {% else %}
+              <p class= "display-11 text-center"> {{event[4].strftime("%d %B %Y")}}</p>
+             {% endif %}
+             <p class= "display-11 text-center"><span>{{event[3]}}</span></p>
+    
+        
+             <div class = "row">
+                 
+             <div class = "col-md-3"></div>
+             <div class = "col-md-6">
+             <p class= "display-8" style= "text-align: justify"> {{event[2]}}</p>
+             <p style= "text-align: justify"> Sumber: {{event[6]}}</p>
+              <p class= "display-17 text-center"> <span2>Fenomena ini dapat diamati di</span2> <span> {{event[7]}}</span></p> 
+              </div>
+              <div class = "col-md-3"></div>
+            </div>
+            
+
+
+ </div>
+ 
+{% endif %}
+ {% endblock %}

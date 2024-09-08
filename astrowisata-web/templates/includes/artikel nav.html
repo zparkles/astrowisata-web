@@ -1,0 +1,17 @@
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+   <ul class="navbar-nav ms-center mb-lg-0">
+       <div class= "container-search">
+            <form method="POST" action="{{url_for('search_artikel')}}" class="d-flex ">
+                {{ form.hidden_tag() }}
+                <input class="form-control form-control-inv" type="search" placeholder="Mau mempelajari apa hari ini?" 
+                aria-label="Search" name="searched">
+                <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass" style="opacity:0.5;"></i></button>
+            </form>
+            </div>
+            </ul>
+    </div>
+</nav>
+
+

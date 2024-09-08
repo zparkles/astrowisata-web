@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+
+<div class="container">
+
+{% if session['username_k'] %}
+<br>
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag()}}
+            <br> 
+             <div class="position-absolute start-50 translate-middle-x">
+            <h7> Lengkapi data Anda sebelum memesan </h7>
+            {{ form.identity_num(class="form-control", placeholder="NIK atau nomor identitas serupa")}} 
+            <br>
+        
+              <h7> Tanggal lahir </h7> 
+              {{ form.dob(class="form-control")}}  
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p class= "display-11 text-center"> Bayar ke admin </p>
+            <p class= "display-11 text-center"><span>BNI - 1237723150 </span></p>
+            <p class= "display-11 text-center"> sebesar</p>
+            <p class= "display-7 text-center"> Rp{{transaction[6]}},-</p>
+            <br>
+            <div class="position-absolute start-53 translate-middle-x">
+              {{ form.payment.label(class="form-label form-label-color")}}
+              {{ form.payment(class="form-control form-control-tiny")}}      
+          
+              <br/>              
+            {{ form.submit(class="btn btn-secondary active btn-secondary-thin-tiny")}}
+             </div>
+       </form>  
+
+
+{% else %}
+<h2> Anda tidak memiliki akses! </h2>
+
+{% endif %}
+
+
+</div>
+{% endblock %}

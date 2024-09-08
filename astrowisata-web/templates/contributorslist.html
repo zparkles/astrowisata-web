@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="container">
+
+<br>
+  {% for message in get_flashed_messages() %}
+      <div class = "alert alert-warning alert-dismissable fade show" role="alert">
+          {{ message }}
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+  {% endfor %}
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nama </th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Nomor Whatsapp</th>
+      <th scope="col">Identification</th>
+       <th scope="col">Date Added</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  {% if session['username'] == "adminbebek" %}
+  {% for c in contributors %}
+  <tbody>
+    <tr>
+      <th scope="row">{{c[0]}}</th>           
+      <td>{{c[1]}}</td>
+      <td>{{c[2]}}</td>
+      <td>{{c[3]}}</td>
+      <td>0{{c[8]}}</td>
+       <td><img src="../{{ c[6] }}" style="width: 50%;"><br></td>
+      <td>{{c[4]}}</td>
+      {% if c[7] == "Sudah diverifikasi" %}
+      <td class="td-blue">{{c[7]}}</td>
+      {% else %}
+      <td class="td-red">{{c[7]}}</td>
+      {% endif %}
+      <td>
+      {% if c[7] == "Belum diverifikasi" %}
+      <a class="btn btn-secondary active btn-sm" href="{{url_for('ver2', id=c[0])}}" role="button">Verifikasi</a>
+      {% else %}
+      <button type="button" class="btn btn-secondary btn-sm" disabled>Sudah diverifikasi</button>
+      {% endif %}
+      </td>
+      <td>
+       <a href="{{url_for('delete_contributor', id = c[0])}}"><i class="fa-solid fa-trash" style="color: #fff;"></i></a></td>
+
+    </tr>
+
+  </tbody>
+    {% endfor %}
+      {% endif %}
+
+
+</table>
+
+
+
+
+  
+</div>
+
+{% endblock %}

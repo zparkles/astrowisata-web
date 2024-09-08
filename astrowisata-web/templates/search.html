@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class = "ms-3" > 
+<button onclick="history.back()" class  = "btn btn-back"><i class="fa-solid fa-circle-arrow-left" style="color:#2D3A81; font-size:20px"></i></button>    
+</div>  
+
+<div class="container">
+  
+  
+<br>
+    <h2> Anda mencari </h2>
+    <p> {{ searched }} </p>
+    <br>
+    <div class="row">
+    {% for post in posts %}
+     {% if todaysdate >= post[12] %}
+     {% else %}
+    <div class="col-lg-22">
+      <div class="card">
+        <img class="card-img-top" src="{{ post[9] }}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{post[1]}}</h5>
+          <br>
+           <div class="position-absolute bottom-0 end-0">
+           <button id = "Enter" type = "button"
+         onclick = "window.location.href ='{{url_for('post', id = post[0])}}';"
+           class= "btn btn-circle"><img src="../static/Expandbutton.png" style="width:70%"></button>    
+            </div>
+            <div class="position-absolute top-1 start-1">
+            {% if post[10] == None %}
+            
+            {% elif 0 <= post[10] <= 999999 %}
+            <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded">$</button>
+            {% elif 1000000 <= post[10] <= 50000000 %}
+            <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded">$$</button>
+            {% else %}
+             <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded">$$$</button>
+            {% endif %}
+            </div>
+            <div class="position-absolute top-1 start-20">
+                {% if post[11] == 0.0 %}
+                <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded"><i class="fa-solid fa-star"></i> -/5</button>
+                {% else %}
+                <button type="button" class="btn btn-outline-light disabled btn-sm btn-rounded"><i class="fa-solid fa-star"></i> {{post[11]}}/5</button>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+        </div>
+        {% endif %}
+      {% endfor %}  
+      </div>
+</div>
+
+{% endblock %}
+

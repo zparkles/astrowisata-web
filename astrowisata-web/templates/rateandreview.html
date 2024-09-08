@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+
+<div class="container">
+<br>
+<h2 class="text-center"> Ayo nilai perjalananmu! </h2>
+
+{% if todaysdate >= transaction[10] %}
+
+<form method="POST" action="{{url_for('rate', id = transaction[0])}}">
+
+{{ form.hidden_tag() }}
+<div class = "row">
+                 
+<div class = "col-md-4"></div>
+<div class = "col-md-4">
+  {{ form.rate.label(class="form-label form-label-color display-12")}}
+  <br>
+ <input type="range" min="1" max="5" value="5" oninput="rangeValue.innerText = this.value" id= "rate" name="rate" style="width:100%; color:#394AA5">
+    <p id="rangeValue" class="text-right">5</p>   
+
+  <br>    
+
+    {{ form.review.label(class="form-label form-label-color display-12")}}
+    {{ form.review(class="form-control ", rows = "11")}}            
+    <br>                  
+
+{{ form.submit(class="btn btn-secondary active btn-secondary-thin-rate")}}
+ </div>
+ <div class = "col-md-4"></div>
+</div>
+
+</form>
+{% else %}
+<h2> Your trip isn't over!</h2>
+
+{% endif %}
+</div>
+{% endblock %}
